@@ -67,7 +67,7 @@
 			%>
 			<div class="col-sm-4" style='height: 350px;'>
 				<div class="thumbnail">
-					<img src="./ShowImage?pid=<%=product.getProdId()%>" alt="Product"
+					<img src="<%=product.getProdImage()%>" alt="Product"
 						style="height: 150px; max-width: 180px">
 					<p class="productname"><%=product.getProdName()%>
 					</p>

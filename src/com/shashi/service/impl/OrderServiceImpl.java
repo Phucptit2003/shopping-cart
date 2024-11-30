@@ -248,7 +248,7 @@ public class OrderServiceImpl implements OrderService {
 
 				OrderDetails order = new OrderDetails();
 				order.setOrderId(rs.getString("orderid"));
-				order.setProdImage(rs.getAsciiStream("image"));
+				order.setProdImage(rs.getString("image"));
 				order.setProdName(rs.getString("pname"));
 				order.setQty(rs.getString("qty"));
 				order.setAmount(rs.getString("amount"));

@@ -24,7 +24,7 @@
 	String userName = (String) session.getAttribute("username");
 	String password = (String) session.getAttribute("password");
 
-	if (userType == null || !userType.equals("admin")) {
+	if (userType == null || (!userType.equals("admin")&& !userType.equals("staff"))) {
 
 		response.sendRedirect("loginFirst.jsp");
 
@@ -39,13 +39,13 @@
 	<jsp:include page="header.jsp" />
 
 	<div class="text-center"
-		style="color: green; font-size: 24px; font-weight: bold;">UnShipped
+		style="color: black; font-size: 24px; font-weight: bold;">UnShipped
 		Orders</div>
 	<div class="container-fluid">
-		<div class="table-responsive ">
+		<div class="table-responsive" style="boder-radius:17px">
 			<table class="table table-hover table-sm">
 				<thead
-					style="background-color: #700fb7; color: white; font-size: 16px;">
+					style="background-color: #2F2626; color: white; font-size: 16px;boder-radius:17px;">
 					<tr>
 						<th>TransactionId</th>
 						<th>ProductId</th>

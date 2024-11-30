@@ -24,6 +24,7 @@ public class UserBean implements Serializable {
 	private String address;
 	private int pinCode;
 	private String password;
+	private String role, position;
 
 	public String getName() {
 		return name;
@@ -31,6 +32,20 @@ public class UserBean implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public Long getMobile() {

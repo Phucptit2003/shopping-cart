@@ -17,7 +17,7 @@ public class OrderDetails implements Serializable {
 	private String amount;
 	private int shipped;
 	private Timestamp time;
-	private InputStream prodImage;
+	private String prodImage;
 
 	public String getOrderId() {
 		return orderId;
@@ -59,11 +59,11 @@ public class OrderDetails implements Serializable {
 		this.time = time;
 	}
 
-	public InputStream getProdImage() {
+	public String getProdImage() {
 		return prodImage;
 	}
 
-	public void setProdImage(InputStream prodImage) {
+	public void setProdImage(String prodImage) {
 		this.prodImage = prodImage;
 	}
 

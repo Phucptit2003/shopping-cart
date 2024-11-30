@@ -24,7 +24,7 @@
 	String password = (String) session.getAttribute("password");
 	String userType = (String) session.getAttribute("usertype");
 
-	if (userType == null || !userType.equals("admin")) {
+	if (userType == null || (!userType.equals("admin") && !userType.equals("staff"))) {
 
 		response.sendRedirect("login.jsp?message=Access Denied, Login as admin!!");
 
@@ -61,7 +61,7 @@
 	<jsp:include page="header.jsp" />
 
 	<div class="text-center"
-		style="color: black; font-size: 14px; font-weight: bold;"><%=message%></div>
+		style="color: black; font-size: 20px; font-weight: bold;margin-top:20px;margin-bottom:20px"><%=message%></div>
 	<!-- Start of Product Items List -->
 	<div class="container" style="background-color: #E6F9E6;">
 		<div class="row text-center">
@@ -69,21 +69,21 @@
 			<%
 			for (ProductBean product : products) {
 			%>
-			<div class="col-sm-4" style='height: 350px;'>
-				<div class="thumbnail">
-					<img src="./ShowImage?pid=<%=product.getProdId()%>" alt="Product"
+			<div class="col-sm-4" style='height: 400px;'>
+				<div class="thumbnail" style=" with:100%;heigth :100%">
+					<img src="<%=product.getProdImage()%>" alt="Product"
 						style="height: 150px; max-width: 180px;">
-					<p class="productname"><%=product.getProdName()%>
+					<p class="productname" style="height: 30px;"><%=product.getProdName()%>
 						(
 						<%=product.getProdId()%>
 						)
 					</p>
-					<p class="productinfo"><%=product.getProdInfo()%></p>
-					<p class="price">
+					<p class="productinfo" style="height: 50px;"><%=product.getProdInfo()%></p>
+					<p class="price"style="margin-top:20px;">
 						Rs
 						<%=product.getProdPrice()%>
 					</p>
-					<form method="post">
+					<form method="post" style="margin-bottom:20px">
 						<button type="submit"
 							formaction="./RemoveProductSrv?prodid=<%=product.getProdId()%>"
 							class="btn btn-danger">Remove Product</button>

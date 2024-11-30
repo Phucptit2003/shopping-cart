@@ -157,7 +157,11 @@ public class UserServiceImpl implements UserService {
 				user.setAddress(rs.getString("address"));
 				user.setPinCode(rs.getInt("pincode"));
 				user.setPassword(rs.getString("password"));
-
+				user.setRole(rs.getString("role"));
+				if(rs.getString("position")!=null) {
+					user.setPosition(rs.getString("position"));
+				}
+				else user.setPosition("customer");
 				return user;
 			}
 

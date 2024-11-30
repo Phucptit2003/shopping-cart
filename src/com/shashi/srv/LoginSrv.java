@@ -55,7 +55,48 @@ public class LoginSrv extends HttpServlet {
 				rd.include(request, response);
 			}
 
-		} else { // Login as customer
+		}
+		else if(userType.equals("staff")) {
+			UserServiceImpl udao = new UserServiceImpl();
+
+			status = udao.isValidCredential(userName, password);
+
+			if (status.equalsIgnoreCase("valid")) {
+				// valid user
+
+				UserBean user = udao.getUserDetails(userName, password);
+
+				HttpSession session = request.getSession();
+
+				session.setAttribute("userdata", user);
+
+				session.setAttribute("username", userName);
+				session.setAttribute("password", password);
+				session.setAttribute("usertype", userType);
+				System.out.println("satff login");
+				if(user.getPosition().equals("warehouse")) {
+					RequestDispatcher rd = request.getRequestDispatcher("adminViewProduct.jsp");
+					rd.forward(request, response);
+				}
+				else if(user.getPosition().equals("sales")) {
+					RequestDispatcher rd = request.getRequestDispatcher("shippedItems.jsp");
+					rd.forward(request, response);
+				}
+				
+
+				
+
+			} else {
+				// invalid user;
+
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp?message=" + status);
+
+				rd.forward(request, response);
+
+			}
+		
+		}
+		else { // Login as customer
 
 			UserServiceImpl udao = new UserServiceImpl();
 
@@ -73,7 +114,7 @@ public class LoginSrv extends HttpServlet {
 				session.setAttribute("username", userName);
 				session.setAttribute("password", password);
 				session.setAttribute("usertype", userType);
-
+				System.out.println("guest login");
 				RequestDispatcher rd = request.getRequestDispatcher("userHome.jsp");
 
 				rd.forward(request, response);

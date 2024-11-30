@@ -40,7 +40,7 @@
 	<!-- <script>document.getElementById('mycart').innerHTML='<i data-count="20" class="fa fa-shopping-cart fa-3x icon-white badge" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;"></i>'</script>
  -->
 	<div class="text-center"
-		style="color: green; font-size: 24px; font-weight: bold;">Order
+		style="color: black; font-size: 24px; font-weight: bold;">Order
 		Details</div>
 	<!-- Start of Product Items List -->
 	<div class="container">
@@ -65,7 +65,7 @@
 					%>
 
 					<tr>
-						<td><img src="./ShowImage?pid=<%=order.getProductId()%>"
+						<td><img src="<%=order.getProdImage()%>"
 							style="width: 50px; height: 50px;"></td>
 						<td><%=order.getProdName()%></td>
 						<td><%=order.getOrderId()%></td>

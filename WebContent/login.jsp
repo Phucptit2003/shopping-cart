@@ -58,6 +58,7 @@
 							id="userrole" class="form-control" required>
 							<option value="customer" selected>CUSTOMER</option>
 							<option value="admin">ADMIN</option>
+							<option value  ="staff">STAFF</option>
 						</select>
 					</div>
 				</div>

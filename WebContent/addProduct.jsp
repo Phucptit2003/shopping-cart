@@ -21,7 +21,7 @@
 	String userName = (String) session.getAttribute("username");
 	String password = (String) session.getAttribute("password");
 
-	if (userType == null || !userType.equals("admin")) {
+	if (userType == null || (!userType.equals("admin")&&  !userType.equals("staff"))) {
 
 		response.sendRedirect("login.jsp?message=Access Denied, Login as admin!!");
 
@@ -67,12 +67,12 @@
 					<div class="col-md-6 form-group">
 						<label for="producttype">Product Type</label> <select name="type"
 							id="producttype" class="form-control" required>
-							<option value="mobile">MOBILE</option>
-							<option value="tv">TV</option>
-							<option value="camera">CAMERA</option>
+							<option value="mobiles">MOBILE</option>
+							<option value="shoes">SHOES</option>
+							<option value="book">BOOK</option>
 							<option value="laptop">LAPTOP</option>
-							<option value="tablet">TABLET</option>
-							<option value="speaker">SPEAKER</option>
+							<option value="electronic">ELECTRONIC</option>
+							<option value="clothes">CLOTHES</option>
 							<option value="other">Some Other Appliances</option>
 						</select>
 					</div>

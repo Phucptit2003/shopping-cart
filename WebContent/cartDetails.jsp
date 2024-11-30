@@ -61,7 +61,7 @@
 	<jsp:include page="header.jsp" />
 
 	<div class="text-center"
-		style="color: green; font-size: 24px; font-weight: bold;">Cart
+		style="color: black; font-size: 24px; font-weight: bold;">Cart
 		Items</div>
 	<!-- <script>document.getElementById('mycart').innerHTML='<i data-count="20" class="fa fa-shopping-cart fa-3x icon-white badge" style="background-color:#333;margin:0px;padding:0px; margin-top:5px;"></i>'</script>
  -->
@@ -70,7 +70,7 @@
 
 		<table class="table table-hover">
 			<thead
-				style="background-color: #186188; color: white; font-size: 16px; font-weight: bold;">
+				style="background-color: #2F2626; color: white; font-size: 16px; font-weight: bold;">
 				<tr>
 					<th>Picture</th>
 					<th>Products</th>
@@ -107,7 +107,7 @@
 				%>
 
 				<tr>
-					<td><img src="./ShowImage?pid=<%=product.getProdId()%>"
+					<td><img src="<%=product.getProdImage()%>"
 						style="width: 50px; height: 50px;"></td>
 					<td><%=product.getProdName()%></td>
 					<td><%=product.getProdPrice()%></td>
@@ -144,10 +144,10 @@
 					<td colspan="4" style="text-align: center;">
 					<td><form method="post">
 							<button formaction="userHome.jsp"
-								style="background-color: black; color: white;">Cancel</button>
+								style="background-color: #d43f3a; color: white;">Cancel</button>
 						</form></td>
 					<td colspan="2" align="center"><form method="post">
-							<button style="background-color: blue; color: white;"
+							<button style="background-color:black; color: white;"
 								formaction="payment.jsp?amount=<%=totAmount%>">Pay Now</button>
 						</form></td>
 

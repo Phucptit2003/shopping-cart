@@ -20,7 +20,7 @@
 	String userName = (String) session.getAttribute("username");
 	String password = (String) session.getAttribute("password");
 
-	if (userType == null || !userType.equals("admin")) {
+	if (userType == null ||( !userType.equals("admin")&&!userType.equals("staff"))) {
 
 		response.sendRedirect("login.jsp?message=Access Denied, Login as admin!!");
 
@@ -36,13 +36,13 @@
 	<jsp:include page="header.jsp" />
 
 	<div class="text-center"
-		style="color: green; font-size: 24px; font-weight: bold;">Shipped
+		style="color: black; font-size: 24px; font-weight: bold;">Shipped
 		Orders</div>
 	<div class="container-fluid">
 		<div class="table-responsive ">
 			<table class="table table-hover table-sm">
 				<thead
-					style="background-color: #115884; color: white; font-size: 18px;">
+					style="background-color: #2F2626; color: white; font-size: 18px;">
 					<tr>
 						<th>TransactionId</th>
 						<th>ProductId</th>

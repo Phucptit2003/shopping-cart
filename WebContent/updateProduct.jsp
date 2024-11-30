@@ -27,7 +27,7 @@
 	if (prodid == null || product == null) {
 		response.sendRedirect("updateProductById.jsp?message=Please Enter a valid product Id");
 		return;
-	} else if (utype == null || !utype.equals("admin")) {
+	} else if (utype == null || (!utype.equals("admin")&& !utype.equals("staff"))) {
 		response.sendRedirect("login.jsp?message=Access Denied, Login as admin!!");
 		return;
 	} else if (uname == null || pwd == null) {
@@ -49,7 +49,7 @@
 				style="border: 2px solid black; border-radius: 10px; background-color: #FFE5CC; padding: 10px;">
 				<div style="font-weight: bold;" class="text-center">
 					<div class="form-group">
-						<img src="./ShowImage?pid=<%=product.getProdId()%>"
+						<img src="<%=product.getProdId()%>"
 							alt="Product Image" height="100px" />
 						<h2 style="color: green;">Product Update Form</h2>
 					</div>

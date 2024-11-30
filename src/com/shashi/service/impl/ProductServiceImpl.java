@@ -19,7 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public String addProduct(String prodName, String prodType, String prodInfo, double prodPrice, int prodQuantity,
-			InputStream prodImage) {
+			String prodImage) {
 		String status = null;
 		String prodId = IDUtil.generateId();
 
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 			ps.setString(4, product.getProdInfo());
 			ps.setDouble(5, product.getProdPrice());
 			ps.setInt(6, product.getProdQuantity());
-			ps.setBlob(7, product.getProdImage());
+			ps.setString(7, product.getProdImage());
 
 			int k = ps.executeUpdate();
 
@@ -135,7 +135,7 @@ public class ProductServiceImpl implements ProductService {
 			ps.setString(3, updatedProduct.getProdInfo());
 			ps.setDouble(4, updatedProduct.getProdPrice());
 			ps.setInt(5, updatedProduct.getProdQuantity());
-			ps.setBlob(6, updatedProduct.getProdImage());
+			ps.setString(6, updatedProduct.getProdImage());
 			ps.setString(7, prevProduct.getProdId());
 
 			int k = ps.executeUpdate();
@@ -207,7 +207,7 @@ public class ProductServiceImpl implements ProductService {
 				product.setProdInfo(rs.getString(4));
 				product.setProdPrice(rs.getDouble(5));
 				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdImage(rs.getString(7));
 
 				products.add(product);
 
@@ -248,7 +248,7 @@ public class ProductServiceImpl implements ProductService {
 				product.setProdInfo(rs.getString(4));
 				product.setProdPrice(rs.getDouble(5));
 				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdImage(rs.getString(7));
 
 				products.add(product);
 
@@ -293,7 +293,7 @@ public class ProductServiceImpl implements ProductService {
 				product.setProdInfo(rs.getString(4));
 				product.setProdPrice(rs.getDouble(5));
 				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdImage(rs.getString(7));
 
 				products.add(product);
 
@@ -364,7 +364,7 @@ public class ProductServiceImpl implements ProductService {
 				product.setProdInfo(rs.getString(4));
 				product.setProdPrice(rs.getDouble(5));
 				product.setProdQuantity(rs.getInt(6));
-				product.setProdImage(rs.getAsciiStream(7));
+				product.setProdImage(rs.getString(7));
 			}
 
 		} catch (SQLException e) {
