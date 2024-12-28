@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.shashi.beans.UserBean;
 import com.shashi.constants.IUserConstants;
@@ -230,6 +232,145 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return userAddr;
+	}
+	@Override
+	public boolean addStaff(UserBean user) {
+	    if (!"staff".equals(user.getRole())) {
+	        System.out.println("Only staff users can be added.");
+	        return false;
+	    }
+
+	    Connection con = DBUtil.provideConnection();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+
+	    // Kiểm tra nếu email đã tồn tại trong cơ sở dữ liệu
+	    String checkEmailSql = "SELECT * FROM user WHERE email = ?";
+	    try {
+	        ps = con.prepareStatement(checkEmailSql);
+	        ps.setString(1, user.getEmail());
+	        rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            // Nếu email đã tồn tại
+	            return false; // Trả về false để biết rằng email đã bị trùng
+	        }
+
+	        // Nếu email chưa tồn tại, thêm mới vào cơ sở dữ liệu
+	        String insertSql = "INSERT INTO user ( name, mobile,email, address, pincode, password, role, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        ps = con.prepareStatement(insertSql);
+	        ps.setString(1, user.getEmail());
+	        ps.setString(2, user.getName());
+	        ps.setLong(3, user.getMobile());
+	        ps.setString(4, user.getAddress());
+	        ps.setInt(5, user.getPinCode());
+	        ps.setString(6, user.getPassword());
+	        ps.setString(7, user.getRole());
+	        ps.setString(8, user.getPosition());
+
+	        return ps.executeUpdate() > 0;
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return false;
+	}
+
+	@Override
+	public boolean updateStaff(UserBean user) {
+	    if (!"staff".equals(user.getRole())) {
+	        System.out.println("Only staff users can be updated.");
+	        return false;
+	    }
+	    Connection con = DBUtil.provideConnection();
+	    PreparedStatement ps = null;
+
+	    String sql = "UPDATE `user` SET name = ?, mobile = ?, address = ?, pincode = ?, password = ?, position = ? WHERE email = ? AND role = 'staff'";
+	    try {
+	        ps = con.prepareStatement(sql);
+
+	        ps.setString(1, user.getName());
+	        ps.setLong(2, user.getMobile());
+	        ps.setString(3, user.getAddress());
+	        ps.setInt(4, user.getPinCode());
+	        ps.setString(5, user.getPassword());
+	        ps.setString(6, user.getPosition());
+	        ps.setString(7, user.getEmail());
+
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (ps != null) ps.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return false;
+	}
+	@Override
+	public boolean deleteStaff(String email) {
+	    Connection con = DBUtil.provideConnection();
+	    PreparedStatement ps = null;
+
+	    String sql = "DELETE FROM `user` WHERE email = ? AND role = 'staff'";
+	    try {
+	        ps = con.prepareStatement(sql);
+
+	        ps.setString(1, email);
+
+	        return ps.executeUpdate() > 0;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (ps != null) ps.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return false;
+	}
+	@Override
+	public List<UserBean> getAllStaff() {
+	    List<UserBean> staffList = new ArrayList<>();
+	    Connection con = DBUtil.provideConnection();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+
+	    String sql = "SELECT * FROM `user` WHERE role = 'staff'";
+	    try {
+	        ps = con.prepareStatement(sql);
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            UserBean user = new UserBean();
+	            user.setEmail(rs.getString("email"));
+	            user.setName(rs.getString("name"));
+	            user.setMobile(rs.getLong("mobile"));
+	            user.setAddress(rs.getString("address"));
+	            user.setPinCode(rs.getInt("pincode"));
+	            user.setPassword(rs.getString("password"));
+	            user.setRole(rs.getString("role"));
+	            user.setPosition(rs.getString("position"));
+
+	            staffList.add(user);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (con != null) con.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return staffList;
 	}
 
 }

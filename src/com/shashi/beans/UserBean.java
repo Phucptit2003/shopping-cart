@@ -17,6 +17,17 @@ public class UserBean implements Serializable {
 		this.pinCode = pinCode;
 		this.password = password;
 	}
+	public UserBean(String userName, Long mobileNo, String emailId, String address, int pinCode, String password, String role, String position ) {
+		super();
+		this.name = userName;
+		this.mobile = mobileNo;
+		this.email = emailId;
+		this.address = address;
+		this.pinCode = pinCode;
+		this.password = password;
+		this.role=role;
+		this.position=position;
+	}
 
 	private String name;
 	private Long mobile;

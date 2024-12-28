@@ -1,5 +1,7 @@
 package com.shashi.service;
 
+import java.util.List;
+
 import com.shashi.beans.UserBean;
 
 public interface UserService {
@@ -23,5 +25,8 @@ public interface UserService {
 	public String getFName(String emailId);
 
 	public String getUserAddr(String userId);
-
+	boolean addStaff(UserBean user); // Thêm user mới (chỉ áp dụng với role = "staff")
+    boolean updateStaff(UserBean user); // Cập nhật thông tin user (chỉ nếu role = "staff")
+    boolean deleteStaff(String email); // Xóa user (chỉ nếu role = "staff")
+    List<UserBean> getAllStaff();
 }
