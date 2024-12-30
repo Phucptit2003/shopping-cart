@@ -67,8 +67,9 @@ public class AddStaffSrv extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("addStaff.jsp");
 			rd.forward(request, response);
 		} else {
-			// Nếu thành công, chuyển hướng về trang quản lý nhân viên
-			response.sendRedirect("adminManageStaff.jsp?message=Staff added successfully.");
+			request.setAttribute("errorMessage", "Add staff successfull.");
+			RequestDispatcher rd = request.getRequestDispatcher("addStaff.jsp");
+			rd.forward(request, response);
 		}
 	}
 

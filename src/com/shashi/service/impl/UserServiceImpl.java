@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
 		try {
 
-			ps = conn.prepareStatement("insert into " + IUserConstants.TABLE_USER + " values(?,?,?,?,?,?)");
+			ps = conn.prepareStatement("insert into " + IUserConstants.TABLE_USER + " values(?,?,?,?,?,?,?,?)");
 
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getName());
@@ -53,7 +53,8 @@ public class UserServiceImpl implements UserService {
 			ps.setString(4, user.getAddress());
 			ps.setInt(5, user.getPinCode());
 			ps.setString(6, user.getPassword());
-
+			ps.setString(7, "customer");
+			ps.setString(8, "");
 			int k = ps.executeUpdate();
 
 			if (k > 0) {
@@ -257,7 +258,7 @@ public class UserServiceImpl implements UserService {
 	        }
 
 	        // Nếu email chưa tồn tại, thêm mới vào cơ sở dữ liệu
-	        String insertSql = "INSERT INTO user ( name, mobile,email, address, pincode, password, role, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	        String insertSql = "INSERT INTO user ( email,name, mobile, address, pincode, password, role, position) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	        ps = con.prepareStatement(insertSql);
 	        ps.setString(1, user.getEmail());
 	        ps.setString(2, user.getName());

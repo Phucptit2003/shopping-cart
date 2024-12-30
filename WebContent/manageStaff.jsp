@@ -73,10 +73,10 @@
                 <button type="submit" formaction="addStaff.jsp">Add Staff</button>
                 <br>
                 <!-- Chuyển đến trang cập nhật thông tin nhân viên -->
-                <button type="submit" formaction="updateStaff.jsp">Update Staff</button>
+                <button type="submit" formaction="lstStaffToUpdate.jsp">Update Staff</button>
                 <br>
                 <!-- Chuyển đến trang xóa nhân viên -->
-                <button type="submit" formaction="deleteStaff.jsp">Delete Staff</button>
+                <button type="submit" formaction="lstStaffToDelete.jsp">Delete Staff</button>
             </form>
         </div>
     </div>

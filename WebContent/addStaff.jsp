@@ -80,7 +80,7 @@
         </form>
 
         <br>
-        <a href="adminManageStaff.jsp" class="btn btn-default" style="width: 100%; margin-top: 20px;">Back to Manage Staff</a>
+        <a href="manageStaff.jsp" class="btn btn-default" style="width: 100%; margin-top: 20px;">Back to Manage Staff</a>
     </div>
 
     <!-- Footer -->
